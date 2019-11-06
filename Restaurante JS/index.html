@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Restaurante JS</title>
+
+</head>
+<body>
+
+<script>
+
+document.writeln("Bienvenidos a mi resturante!"+"<br>");
+document.writeln("............................"+"<br>");
+document.writeln("Esto es el menu de hoy:"+"<br>");
+
+var menuRestaurante = ["carbonara","risotto","lasagna","pollo","fruta","tiramisu"];
+var precioPlatos = [10,5,10,5,10,5];
+
+var menu = [];
+var precio = [];
+
+for (i of menuRestaurante){
+    menu.push(i);
+}
+for (i of precioPlatos){
+    precio.push(i);
+}
+
+document.writeln(menu[0]+"..."+precio[0]+" euro"+"<br>"); 
+document.writeln(menu[1]+"..."+precio[1]+" euro"+"<br>"); 
+document.writeln(menu[2]+"..."+precio[2]+" euro"+"<br>"); 
+document.writeln(menu[3]+"..."+precio[3]+" euro"+"<br>"); 
+document.writeln(menu[4]+"..."+precio[4]+" euro"+"<br>"); 
+document.writeln(menu[5]+"..."+precio[5]+" euro"+"<br>"); 
+document.writeln("............................"+"<br>");
+document.writeln("Escribe los platos que quieres pedir separados por un espacio: "+"<br>");
+
+ 
+ 
+
+</script>
+
+<form >
+
+ <p><input type="text" id='input1' style="width: 400px;"> </p> 
+ <button type="button" onclick='savePedido()' id="button">Invia el pedido</button>
+</form>  
+
+ <p id="outputPedido"> </p>   
+ <p id="outputPedido1"> </p> 
+ <p id="outputPedido2"> </p> 
+ <p id="outputPedido3"> </p> 
+ <p id="outputPedido4"> </p>
+<script>
+
+ function savePedido ()
+ {
+     let pedido = document.getElementById('input1').value;
+     let patron = /\s*[a-zA-Z]+\s*/g;
+     let platosPedido = pedido.match(patron);
+     
+     console.log(platosPedido);
+     
+    let textoAEscibir = '';
+     
+    var platosPedidoSinEspacio = [];
+
+    var pedidoCuenta = [];
+
+     if (platosPedido)
+     {
+         platosPedido.forEach(function(element, indice) 
+         {
+             textoAEscibir = `${textoAEscibir} ${indice +1}:${element.trim()}`;
+             let sinEspacio = element.trim();
+             platosPedidoSinEspacio.push(sinEspacio);
+         
+         })
+         document.getElementById('outputPedido').innerHTML = `Tu pedido contiene ${platosPedido.length} platos: <br> ${textoAEscibir}`;
+         console.log(textoAEscibir);
+     }
+     else
+     {
+        document.getElementById('outputPedido').innerHTML = "Tu pedido esta vacio!"
+     }
+
+     console.log(platosPedidoSinEspacio);
+     var pedidoCuentaIndice = [];
+     // push en array pedidoCuenta platos corecto
+     // busco el indice de cada plato corecto en el array menu
+     for (i of platosPedidoSinEspacio)
+     {
+         if  (i == menu[0])
+         {
+            pedidoCuenta.push(i); 
+            var indice = menu.findIndex(x => x == menu[0]);
+            pedidoCuentaIndice.push(indice);
+         }
+         else if (i == menu[1]){
+            pedidoCuenta.push(i); 
+            var indice = menu.findIndex(x => x == menu[1]);
+            pedidoCuentaIndice.push(indice);
+         }
+         else if (i == menu[2]){           
+            pedidoCuenta.push(i); 
+            var indice = menu.findIndex(x => x == menu[2]);
+            pedidoCuentaIndice.push(indice);
+         }
+         else if (i == menu[3]){           
+            pedidoCuenta.push(i); 
+            var indice = menu.findIndex(x => x == menu[3]);
+            pedidoCuentaIndice.push(indice);
+         }
+         else if (i == menu[4]){  
+            pedidoCuenta.push(i); 
+            var indice = menu.findIndex(x => x == menu[4]);
+            pedidoCuentaIndice.push(indice);      
+         }
+         else if (i == menu[5]){
+            pedidoCuenta.push(i); 
+            var indice = menu.findIndex(x => x == menu[5]);
+            pedidoCuentaIndice.push(indice);
+         }
+         else
+         {
+            document.getElementById('outputPedido1').innerHTML = "El plato "+'"'+i+'"'+" no esta en el menu!";
+         }
+     }
+     document.getElementById('outputPedido2').innerHTML = "Tu pedido corecto es: "+pedidoCuenta;
+     
+     console.log(pedidoCuentaIndice);
+     
+     var cuenta = [];
+     
+     for ( i of pedidoCuentaIndice)
+     {
+         
+        x = precio[i];
+        cuenta.push(x);
+     }
+
+     function suma (total, num)
+     {
+      return total+num;
+     }
+     console.log(cuenta);
+     console.log(cuenta.reduce(suma));
+     document.getElementById('outputPedido3').innerHTML = "Tu cuenta a pagar es: "+cuenta.reduce(suma)+" euro";
+     
+   
+
+    
+
+
+     // CUENTAvar 
+     
+ }
+ 
+ 
+ </script>
+
+ 
+     
+        
+    
+</body>
+</html>
